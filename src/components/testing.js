@@ -1,7 +1,8 @@
 console.log("x")
 let counter = 0;
-counter++;
+
 
 
 export { counter }
+counter++;
 console.log("after")
