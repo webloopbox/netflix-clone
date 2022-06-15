@@ -1,0 +1,26 @@
+.nav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 100;
+    
+    &__items {
+        margin-right: 25px;
+    }
+    &__logo {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-left: 60px;
+    width: 95px;
+    }
+}
+
+.home-nav {
+    background-color: rgb(20, 20, 20);
+}

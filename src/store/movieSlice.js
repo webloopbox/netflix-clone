@@ -4,8 +4,8 @@ export const movieSlice = createSlice({
   name: "movie",
   initialState: { title: "", descripion: "" },
   reducers: {
-    getMovies: (state, action) => {
-      state.title = action.payload;
+    getMovies: (state, { payload }) => {
+      state.title = payload;
     }
   }
 });
