@@ -4,6 +4,7 @@ import { auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentUser, logout, setUserData } from '../store/userSlice';
+import { RootState } from '../store';
 import { addDoc, collection, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from '../firebase';
 import ReactPlayer from 'react-player'
@@ -17,20 +18,24 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 const handleAdd = async () => {
 
     try {
-        const docRef = doc(db, "users", auth.currentUser.uid);
+        let uid = auth.currentUser ? auth.currentUser.uid : ''
+        const docRef = doc(db, "users", uid);
         await updateDoc(docRef, { car: "mustang" })
         console.log(docRef);
     } catch (err) {
         console.log(err);
     }
+}
 
+interface CurrentUser {
+    email?: string
 }
 
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const { currentUser, userData } = useSelector(state => state.users)
-    console.log("current data: ", currentUser.email);
+    const { currentUser, userData } : { currentUser: CurrentUser, userData: object }  = useSelector((state:RootState) => state.users)
+    console.log("current data: ", currentUser);
     const [genre, setGenre] = useState('')
     const classes = useStyles()
 
@@ -47,12 +52,13 @@ export const Home = () => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
-                if (doc.id === auth.currentUser.uid) {
+                let uid = auth.currentUser ? auth.currentUser.uid : ''
+                if (doc.id === uid) {
                     dispatch(setUserData(doc.data()))
                 }
             });
         }
-        if (currentUser.email) {
+        if (currentUser.hasOwnProperty('email')) {
             fetchDocs()
         }
     }, [])
@@ -109,7 +115,7 @@ export const Home = () => {
                         </div>
                     </div>
                 </div>
-                <h1>{(currentUser.email != undefined) ? currentUser.email : 'ładowanie...'}</h1>
+                <h1>{(currentUser.hasOwnProperty('email')) ? currentUser.email : 'ładowanie...'}</h1>
                 <button onClick={() => dispatch(logout())}>sign out</button>
                 <button onClick={() => handleAdd()}>add database element</button>
             </header>
