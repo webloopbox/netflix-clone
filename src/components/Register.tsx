@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
-import { RegisterCredentials } from '../models/userCredentials';
+import { RegisterCredentials } from '../models/UserCredentials';
 import { useAppDispatch } from '../store';
 
 const initialValues = {

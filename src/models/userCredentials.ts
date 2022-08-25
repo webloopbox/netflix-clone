@@ -6,5 +6,5 @@ export type RegisterCredentials = {
 }
 export type LoginCredentials = {
     email: string,
-    pass: string,
+    password: string,
 }

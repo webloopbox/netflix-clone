@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
-import { RegisterCredentials, LoginCredentials } from '../models/userCredentials';
+import { RegisterCredentials, LoginCredentials } from '../models/UserCredentials';
 
 export const register = createAsyncThunk<any, RegisterCredentials>('user/register', async ({ email, password }, { rejectWithValue }) => {
 
