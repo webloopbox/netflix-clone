@@ -16,11 +16,9 @@ import { db } from '../firebase';
 import { auth } from '../firebase';
 import { logout } from '../store/userSlice';
 
-
-type HeaderProps = {
+type CurrentUser = {
     email?: string
 }
-
 const handleAdd = async () => {
 
     try {
@@ -33,17 +31,16 @@ const handleAdd = async () => {
     }
 }
 
-export const Header = ({currentUser}: {currentUser: HeaderProps}) => {
+export const Header = ({currentUser}: {currentUser: CurrentUser}) => {
 
     const [muteStatus, setMuteStatus] = useState<boolean>(true)
-    const [genre, setGenre] = useState('')
+    const [genre, setGenre] = useState<string>('')
     const classes = useStyles()
     const dispatch = useDispatch()
 
     const handleMute = () => {
         setMuteStatus(prev => !prev)   
     }
-
 
     return (
         <header>

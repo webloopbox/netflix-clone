@@ -32,6 +32,8 @@ export const logout = createAsyncThunk('user/logout', async (payload, { rejectWi
     return 1;
 })
 
+// in development
+
 export const userSlice = createSlice({
     name: "user",
     initialState: { currentUser: {}, x: 1, userData: {} },

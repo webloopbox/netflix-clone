@@ -7,7 +7,6 @@ import avatar from '../assets/avatar.png'
 import ArrowDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowUpIcon from '@mui/icons-material/ArrowDropUp';
 
-
 interface CurrentUser {
     email?: string
 }
@@ -15,7 +14,7 @@ interface CurrentUser {
 export const Nav = () => {
 
     const { pathname } = useLocation()
-    const { currentUser, userData }: { currentUser: CurrentUser, userData: object } = useSelector((state: RootState) => state.users)
+    const { currentUser, userData } : { currentUser: CurrentUser, userData: object } = useSelector((state: RootState) => state.users)
 
     return (
         <nav className={pathname === '/browse' ? 'nav home-nav' : 'nav'}>
@@ -46,7 +45,6 @@ export const Nav = () => {
                     </div> :
                     <Link to="/login" className='login'><Button variant='contained' color='primary'>Zaloguj się</Button></Link>}
             </div>
-
         </nav>
     )
 }

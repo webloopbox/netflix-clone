@@ -43,10 +43,7 @@ export const Home = () => {
             fetchDocs()
         }
     }, [])
-
-
-
-
+    
     return (
         <>
             <Header currentUser={currentUser}/>
