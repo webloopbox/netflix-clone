@@ -1,26 +1,121 @@
 .nav {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 68px;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: transparent;
-    z-index: 100;
-    
-    &__items {
-        margin-right: 25px;
-    }
-    &__logo {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 100;
+
+  &__items {
+    margin-right: 25px;
+  }
+  &__logo {
     font-size: 1.2rem;
     font-weight: 900;
     margin-left: 60px;
     width: 95px;
-    }
+  }
 }
 
 .home-nav {
-    background-color: rgb(20, 20, 20);
+  background-color: rgb(20, 20, 20);
+}
+
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.profile-arrow {
+  transition: transform 0.3s !important;
+}
+
+.profile:hover > .profile-arrow {
+  transform: rotate(180deg);
+}
+
+.profile__options {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 180%;
+  right: 0px;
+  background: black;
+  text-align: center;
+  width: 190px;
+  transition: 0.3s;
+}
+
+.profile__options > hr {
+  border: none;
+  height: 1px;
+  background: rgb(121, 121, 121);
+  margin: 20px 0;
+}
+
+.profile:hover > .profile__options {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile__options-profiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  padding: 25px 10px 0px 10px;
+}
+
+.profile__options-profiles > li,
+.profile__options-more > li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile__options-profiles > li:hover,
+.profile__options-more > li:hover { 
+    cursor: pointer;
+    text-decoration: underline;
+} 
+
+.profile__options-more {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.profile__options-profiles > li > .MuiAvatar-root,
+.profile__options-more > li > .MuiAvatar-root {
+  margin-right: 10px;
+}
+
+.profile__arrow-up {
+  position: absolute;
+  top: -21px;
+  right: 25px;
+}
+
+.profile__options button {
+    background: none;
+    width: 100%;
+    border: none;
+    color: white;
+    font-weight: 200 !important;
+    margin-bottom: 20px;
+}
+
+.profile__options button:hover {
+    text-decoration: underline;
+}
+.logout {
+    padding: 0 10px;
 }

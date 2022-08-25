@@ -4,8 +4,6 @@ import { createTheme } from '@mui/material/styles';
 
 // @mui/material/styles/createPalette
 
-const foo = 'fofofofofof'
-
 declare module '@mui/material/styles' {
     interface Palette {
         play: Palette['primary'];

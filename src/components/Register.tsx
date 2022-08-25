@@ -2,12 +2,13 @@ import { useFormik } from 'formik'
 import { useEffect } from 'react';
 import * as Yup from 'yup'
 import { register } from '../store/userSlice';
-import { useDispatch } from 'react-redux';
 import background from '../assets/bg.jpg'
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
+import { RegisterCredentials } from '../models/userCredentials';
+import { useAppDispatch } from '../store';
 
 const initialValues = {
     email: '',
@@ -23,22 +24,23 @@ const validationSchema = Yup.object({
 
 export const Register = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const isFirstRender = useFirstRender()
+    const navigate = useNavigate()
 
-    const onSubmit = (values) => {
+    const onSubmit = (values: RegisterCredentials) => {
         console.log('submitted', values);
         dispatch(register({
             email: formik.values.email,
-            pass: formik.values.password,
+            password: formik.values.password,
             comfirmPassword: formik.values.comfirmPassword
-        }))
+        })).unwrap().then(() => {
+            navigate('/browse')
+        })
     }
 
     useEffect(() => {
-
         inputsUI(formik, isFirstRender)
-
     })
 
     const formik = useFormik({

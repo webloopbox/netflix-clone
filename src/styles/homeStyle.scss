@@ -26,12 +26,41 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    // height: 100%;
 }
 
 .general__info {
     margin-left: 50px;
     grid-row: 3/4;
+}
+
+.embedded-components {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.maturity-rating {
+    position: relative;
+    width: 100px;
+    height: 45px;
+    background-color: rgba(51,51,51,.6);
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.maturity-rating::before {
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: white;
 }
 
 .general__info img {
