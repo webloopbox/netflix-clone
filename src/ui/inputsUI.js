@@ -1,3 +1,5 @@
+// login/register labels transitions after onclick
+
 export const inputsUI = (formik, isFirstRender) => {
 
     const inputs = document.querySelectorAll('.signup-container__control > input')
@@ -42,4 +44,3 @@ export const inputsUI = (formik, isFirstRender) => {
         }
     }
 }
-

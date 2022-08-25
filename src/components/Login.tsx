@@ -7,8 +7,9 @@ import { login } from '../store/userSlice';
 import background from '../assets/bg.jpg'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
-import { useAppDispatch } from '../store';
-import { LoginCredentials } from '../models/userCredentials';
+import { LoginCredentials } from '../models/UserCredentials';
+import { AppDispatch } from '../store';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
     email: '',
@@ -22,6 +23,7 @@ const validationSchema = Yup.object({
 
 export const Login = () => {
 
+    const useAppDispatch: () => AppDispatch = useDispatch
     const dispatch = useAppDispatch()
     const isFirstRender = useFirstRender()
     const navigate = useNavigate()

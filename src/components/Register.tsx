@@ -8,7 +8,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
 import { RegisterCredentials } from '../models/UserCredentials';
-import { useAppDispatch } from '../store';
+import { AppDispatch } from '../store';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
     email: '',
@@ -24,6 +25,7 @@ const validationSchema = Yup.object({
 
 export const Register = () => {
 
+    const useAppDispatch: () => AppDispatch = useDispatch 
     const dispatch = useAppDispatch()
     const isFirstRender = useFirstRender()
     const navigate = useNavigate()
