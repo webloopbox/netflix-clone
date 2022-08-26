@@ -9,34 +9,13 @@ import VolumeMuteIcon from '@mui/icons-material/VolumeMuteOutlined';
 import { muiStyles } from '../styles/muiStyles';
 import { useState } from 'react';
 import { useStyles } from '../ui/makeStyles';
-import { useDispatch } from 'react-redux';
+import { CurrentUserUid } from '../models/User';
 
-import { addDoc, collection, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
-import { db } from '../firebase';
-import { auth } from '../firebase';
-import { logout } from '../store/userSlice';
-
-type CurrentUser = {
-    email?: string
-}
-const handleAdd = async () => {
-
-    try {
-        let uid = auth.currentUser ? auth.currentUser.uid : ''
-        const docRef = doc(db, "users", uid);
-        await updateDoc(docRef, { car: "mustang" })
-        console.log(docRef);
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-export const Header = ({currentUser}: {currentUser: CurrentUser}) => {
+export const Header = ({currentUser}: {currentUser: CurrentUserUid}) => {
 
     const [muteStatus, setMuteStatus] = useState<boolean>(true)
     const [genre, setGenre] = useState<string>('')
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     const handleMute = () => {
         setMuteStatus(prev => !prev)   
@@ -96,9 +75,7 @@ export const Header = ({currentUser}: {currentUser: CurrentUser}) => {
                         <div className='maturity-rating'>16+</div>
                     </div>
                 </div>
-                <h1>{(currentUser.hasOwnProperty('email')) ? currentUser.email : 'ładowanie...'}</h1>
-                <button onClick={() => dispatch(logout())}>sign out</button>
-                <button onClick={() => handleAdd()}>add database element</button>
+                <h1>{(currentUser.hasOwnProperty('email')) ? currentUser : 'ładowanie...'}</h1>
             </header>
     )
 }

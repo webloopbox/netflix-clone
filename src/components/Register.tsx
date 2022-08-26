@@ -7,11 +7,11 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
-import { RegisterCredentials } from '../models/UserCredentials';
+import { RegisterCredentials } from '../models/User';
 import { AppDispatch } from '../store';
 import { useDispatch } from 'react-redux';
 
-const initialValues = {
+const initialValues: RegisterCredentials = {
     email: '',
     password: '',
     comfirmPassword: ''
@@ -27,11 +27,10 @@ export const Register = () => {
 
     const useAppDispatch: () => AppDispatch = useDispatch 
     const dispatch = useAppDispatch()
-    const isFirstRender = useFirstRender()
+    const isFirstRender = useFirstRender() // check if is first render of Register component
     const navigate = useNavigate()
 
     const onSubmit = (values: RegisterCredentials) => {
-        console.log('submitted', values);
         dispatch(register({
             email: formik.values.email,
             password: formik.values.password,

@@ -7,11 +7,11 @@ import { login } from '../store/userSlice';
 import background from '../assets/bg.jpg'
 import { useFirstRender } from '../hooks';
 import { inputsUI } from '../ui/inputsUI';
-import { LoginCredentials } from '../models/UserCredentials';
+import { LoginCredentials } from '../models/User';
 import { AppDispatch } from '../store';
 import { useDispatch } from 'react-redux';
 
-const initialValues = {
+const initialValues: LoginCredentials = {
     email: '',
     password: ''
 }
@@ -29,9 +29,8 @@ export const Login = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-
+        // behaviour of login/register fields UI
         inputsUI(formik, isFirstRender)
-
     })
 
     const onSubmit = (values: LoginCredentials) => {
