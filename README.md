@@ -1,5 +1,9 @@
 <h2 align="center">
-  Netflix clone (not finished yet)
+  Netflix Clone
+</h2>
+
+<h2 align="center">
+<img src="https://user-images.githubusercontent.com/60100557/187306168-0ea80139-f7b1-44d5-8768-7f653f63a38d.jpg" width="700" />
 </h2>
 
 ## 🚀 Getting Started
@@ -22,14 +26,20 @@ const firebaseConfig = {
 };
 ```
 
+#### Then place your own TMDB API key inside `api/genres/index.ts` and `api/movies/index.ts`.
+
+
+
 #### To start the application use:
 ```bash
+npm install
 npm start
 ```
 
 ## Built with
 * React
 * Typescript
-* Redux-toolkit
+* Redux Toolkit
+* Redux-Saga
 * Firebase
 * Formik
