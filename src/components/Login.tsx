@@ -59,7 +59,7 @@ export const Login = () => {
             <div className='signup-container'>
                 <div className='signup-container__inner'>
                     <form className='signup-container__form' onSubmit={formik.handleSubmit}>
-                        <h2>Zaloguj się</h2>
+                        <h2>Login</h2>
                         <div className='signup-container__control'>
                             <input type="text" id="email" {...formik.getFieldProps('email')} />
                             <label htmlFor="email">Email</label>
@@ -67,15 +67,15 @@ export const Login = () => {
                         </div>
                         <div className='signup-container__control'>
                             <input type="password" id="password" {...formik.getFieldProps('password')} />
-                            <label htmlFor="password">Hasło</label>
+                            <label htmlFor="password">Password</label>
                             {formik.touched.password && formik.errors.password ? <div className='error'>{formik.errors.password}</div> : null}
                         </div>
 
-                        <Button type='submit' variant="contained" color='primary'>Zaloguj się</Button>
+                        <Button type='submit' variant="contained" color='primary'>Login</Button>
 
                     </form>
-                    <p>Nie masz jeszcze konta w serwisie Netflix?</p>
-                    <Link to='/register'>Zarejestruj się.</Link>
+                    <p>Do not have a Netflix account yet?</p>
+                    <Link to='/register'>Register now.</Link>
                 </div>
             </div>
         </>

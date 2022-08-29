@@ -47,7 +47,7 @@ export const Nav = () => {
                 }
                 {
                     (currentUserUid==='' && pathname === '/browse') &&
-                        <Link to="/login" className='login'><Button variant='contained' color='primary'>Zaloguj się</Button></Link>
+                        <Link to="/login" className='login'><Button variant='contained' color='primary'>Login</Button></Link>
                 }
             </div>
         </nav>

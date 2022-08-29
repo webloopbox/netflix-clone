@@ -25,7 +25,7 @@ export const Movies = () => {
     return (
         <main className="movies-wrapper">
             <section className="top-movies-actual">
-                <h2 className="top-movies-actual__title">Top 10 filmów w Polsce dzisiaj</h2>
+                <h2 className="top-movies-actual__title">Top 10 movies in Poland today</h2>
                 <div className="slider">
                     <Swiper
                         modules={[Navigation, Pagination, Scrollbar, A11y]}

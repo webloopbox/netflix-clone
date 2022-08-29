@@ -36,7 +36,7 @@ export const Header = ({ currentUser }: { currentUser: CurrentUserUid }) => {
             </div>
             <div className='general'>
                 <div className='general__genre'>
-                    <h3>Filmy</h3>
+                    <h3>Movies</h3>
                     <FormControl classes={
                         { root: classes.formControlRoot }
                     }>
@@ -44,21 +44,23 @@ export const Header = ({ currentUser }: { currentUser: CurrentUserUid }) => {
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={genre}
-                            label="Gatunki"
+                            label="Genres"
+                            inputProps={{MenuProps: {disableScrollLock: true}}}
+
                             onChange={(e) => setGenre(e.target.value)}
                             classes={{
                                 select: classes.selectRoot,
                                 icon: classes.icon
                             }}
                         >
-                            <MenuItem value='Dramaty'>Dramaty</MenuItem>
-                            <MenuItem value='Komedie'>Komedie</MenuItem>
-                            <MenuItem value='Kino Akcji'>Kino Akcji</MenuItem>
-                            <MenuItem value='Familijne i dla dzieci'>Familijne i dla dzieci</MenuItem>
-                            <MenuItem value='Dokumentalne'>Dokumentalne</MenuItem>
-                            <MenuItem value='Thrillery'>Thrillery</MenuItem>
-                            <MenuItem value='Horrory'>Horrory</MenuItem>
-                            <MenuItem value='Kryminalne'>Kryminalne</MenuItem>
+                            <MenuItem value='Dramaty'>Dramas</MenuItem>
+                            <MenuItem value='Komedie'>Comedies</MenuItem>
+                            <MenuItem value='Kino Akcji'>Classic</MenuItem>
+                            <MenuItem value='Familijne i dla dzieci'>Children & Family</MenuItem>
+                            <MenuItem value='Dokumentalne'>Documentaries</MenuItem>
+                            <MenuItem value='Thrillery'>Thrillers</MenuItem>
+                            <MenuItem value='Horrory'>Horror</MenuItem>
+                            <MenuItem value='Kryminalne'>Romantic</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -66,8 +68,8 @@ export const Header = ({ currentUser }: { currentUser: CurrentUserUid }) => {
                     <img src={header_img} alt="" />
                     <h4>A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar, as well as the many other drug kingpins who plagued the country through the years.</h4>
                     <div className='general__actions'>
-                        <Button variant="contained" color='play' className='play'><PlayIcon sx={{ fontSize: { sm: 30, lg: 30 }, marginRight: 1 }} /> Odtwórz</Button>
-                        <Button variant="contained" color='moreInfo' className='more-info'><InfoIcon sx={{ fontSize: 30, marginRight: 1 }} /> Więcej informacji</Button>
+                        <Button variant="contained" color='play' className='play'><PlayIcon sx={{ fontSize: { sm: 30, lg: 30 }, marginRight: 1 }} /> Play</Button>
+                        <Button variant="contained" color='moreInfo' className='more-info'><InfoIcon sx={{ fontSize: 30, marginRight: 1 }} /> More Info</Button>
                     </div>
                 </div>
                 <div className='embedded-components'>

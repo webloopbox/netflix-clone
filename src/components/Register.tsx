@@ -58,7 +58,7 @@ export const Register = () => {
         <div className='signup-container'>
             <div className='signup-container__inner'>
                 <form className='signup-container__form' onSubmit={formik.handleSubmit}>
-                    <h2>Zarejestruj się</h2>
+                    <h2>Register</h2>
                     <div className='signup-container__control'>
                         <input type="text" id="email" {...formik.getFieldProps('email')} />
                         <label htmlFor="email">Email</label>
@@ -66,19 +66,19 @@ export const Register = () => {
                     </div>
                     <div className='signup-container__control'>
                         <input type="password" id="password" {...formik.getFieldProps('password')} />
-                        <label htmlFor="password">Hasło</label>
+                        <label htmlFor="password">Password</label>
                         {formik.touched.password && formik.errors.password ? <div className='error'>{formik.errors.password}</div> : null}
                     </div>
                     <div className='signup-container__control'>
                         <input type="password" id="comfirmPassword" {...formik.getFieldProps('comfirmPassword')} />
-                        <label htmlFor="comfirmPassword">Potwierdź hasło</label>
+                        <label htmlFor="comfirmPassword">Confirm password</label>
                         {formik.touched.comfirmPassword && formik.errors.comfirmPassword ? <div className='error'>{formik.errors.comfirmPassword}</div> : null}
                     </div>
 
-                    <Button type='submit' variant="contained" color='primary'>Zarejestruj się</Button>
+                    <Button type='submit' variant="contained" color='primary'>Register</Button>
 
                 </form>
-                <Link to='/login'>Wróć</Link>
+                <Link to='/login'>Back</Link>
             </div>
         </div>
     </>
