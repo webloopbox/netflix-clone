@@ -43,8 +43,12 @@ export const Nav = () => {
 
                             <ArrowUpIcon className='profile__arrow-up' sx={{ fontSize: 35 }} />
                         </div>
-                    </div> :
-                    <Link to="/login" className='login'><Button variant='contained' color='primary'>Zaloguj się</Button></Link>}
+                    </div> : false
+                }
+                {
+                    (currentUserUid==='' && pathname === '/browse') &&
+                        <Link to="/login" className='login'><Button variant='contained' color='primary'>Zaloguj się</Button></Link>
+                }
             </div>
         </nav>
     )

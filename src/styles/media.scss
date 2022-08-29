@@ -1,0 +1,172 @@
+@media (min-width: 550px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 20% !important;
+  }
+  .top-movie {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    &__details {
+      position: relative;
+      left: 80px;
+      width: 85px;
+      height: 40%;
+      background-color: gray;
+      border-radius: 5px;
+    }
+  }
+
+  .top-10-rank {
+    position: absolute;
+    left: 0px;
+    height: 40%;
+    &.first {
+      left: 15px;
+    }
+    &.last {
+      height: 30%;
+      top: 12px;
+      left: 20px;
+    }
+  }
+  .signup-container__inner {
+    max-width: none;
+    padding: 50px 70px;
+  }
+}
+@media (min-width: 800px) {
+  .general {
+    grid-template-columns: 1fr 0fr 150px;
+    grid-template-rows: 120px 50px 1fr;
+  }
+  .embedded-components {
+    position: static;
+    right: auto;
+  }
+  .maturity-rating {
+    margin-left: 0;
+  }
+  .general__genre {
+    padding-left: 50px;
+  }
+  .general__genre h3 {
+    margin-right: 50px;
+  }
+  .general__info {
+    margin-left: 50px;
+  }
+  .general__actions .play,
+  .general__actions .more-info {
+    padding: 10px 15px;
+    font-size: 20px;
+    margin-right: 15px;
+    text-transform: capitalize;
+  }
+  .embedded-components {
+    align-items: flex-end;
+  }
+  .movies-wrapper {
+    margin-top: 100px;
+  }
+}
+@media (min-width: 1100px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 30% !important;
+  }
+  .general__genre h3 {
+    font-size: 2.2vw;
+    margin-right: 50px;
+  }
+
+  .general__info h4 {
+    font-size: 20px;
+    width: 500px;
+  }
+  .movies-wrapper {
+    margin-top: 0;
+  }
+  .top-movie {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    &__details {
+      position: relative;
+      left: 120px;
+      width: 130px;
+      height: 60%;
+      background-color: gray;
+      border-radius: 5px;
+    }
+  }
+
+  .top-10-rank {
+    position: absolute;
+    left: -10px;
+    height: 60%;
+    &.first {
+      left: 15px;
+    }
+    &.last {
+      height: 45%;
+      top: 20px;
+      left: 20px;
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .top-movies-actual {
+    &__title {
+      font-size: 28px;
+    }
+  }
+  .general {
+    // grid-template-columns: 1fr 0.8fr 200px;
+    grid-template-rows: 120px 50px 1fr;
+  }
+}
+@media (min-width: 1700px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 40% !important;
+  }
+  .top-movies-actual {
+    &__title {
+      font-size: 32px;
+    }
+  }
+  .movies-wrapper {
+    margin-top: -325px;
+  }
+  .top-movie {
+    &__details {
+      position: relative;
+      left: 60px;
+      width: 160px;
+      height: 80%;
+      background-color: gray;
+      border-radius: 5px;
+    }
+  }
+
+  .top-10-rank {
+    position: absolute;
+    left: -100px;
+    height: 80%;
+    &.first {
+      left: -70px;
+    }
+    &.last {
+      height: 65%;
+      top: 20px;
+      left: 20px;
+      left: -70px;
+    }
+  }
+}

@@ -14,8 +14,8 @@ export type UserData = {
     email: string
 }
 
-export type UserInitState = { 
-    currentUserUid: CurrentUserUid, 
+export type UserInitState = {
+    currentUserUid: CurrentUserUid,
     userData: UserData
 }
 

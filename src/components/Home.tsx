@@ -13,10 +13,9 @@ import { CurrentUserUid, UserData } from '../models/User';
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const { currentUserUid, userData } : { currentUserUid: CurrentUserUid, userData: UserData }  = useSelector((state:RootState) => state.users)
+    const { currentUserUid, userData }: { currentUserUid: CurrentUserUid, userData: UserData } = useSelector((state: RootState) => state.users)
 
     onAuthStateChanged(auth, (currentUser) => {
-        console.log('tutaj', currentUser)
         if (currentUser) {
             dispatch(setCurrentUserUid(currentUser.uid))
             dispatch(setUserData(currentUser.email as string))
@@ -24,7 +23,6 @@ export const Home = () => {
     })
 
     useEffect(() => {
-        console.log('Home')
         // get data of logged user / testing stage 
         const fetchDocs = async () => {
             const querySnapshot = await getDocs(collection(db, "users"));
@@ -32,18 +30,18 @@ export const Home = () => {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc.id, " => ", doc.data());
                 let uid = auth.currentUser ? auth.currentUser.uid : ''
-                if (doc.id === uid) {}
+                if (doc.id === uid) { }
             });
         }
         if (currentUserUid.hasOwnProperty('email')) {
             fetchDocs()
         }
     }, [])
-    
+
     return (
         <>
-            <Header currentUser={currentUserUid}/>
-            <Movies/>                    
+            <Header currentUser={currentUserUid} />
+            <Movies />
         </>
     )
 }

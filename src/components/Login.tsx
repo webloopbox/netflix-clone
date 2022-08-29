@@ -37,9 +37,9 @@ export const Login = () => {
         dispatch(login({
             email: formik.values.email,
             password: formik.values.password
-        })).unwrap().then((e) => {
+        })).unwrap().then((e: any) => {
             navigate('/browse')
-        }).catch((e) => {
+        }).catch((e: any) => {
             console.log(e);
         })
     }

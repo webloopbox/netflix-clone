@@ -26,7 +26,7 @@ export const inputsUI = (formik: any, isFirstRender: boolean) => {
             type: 'comfirmPassword'
         }
     }
-    
+
     if (!isFirstRender) {
         for (const prop in fields) {
             if (!fields[prop as keyof Fields]) continue

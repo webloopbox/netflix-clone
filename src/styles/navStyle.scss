@@ -16,7 +16,8 @@
   &__logo {
     font-size: 1.2rem;
     font-weight: 900;
-    margin-left: 60px;
+    margin-left: 45px;
+    margin-top: 5px;
     width: 95px;
   }
 }
@@ -80,10 +81,10 @@
 }
 
 .profile__options-profiles > li:hover,
-.profile__options-more > li:hover { 
-    cursor: pointer;
-    text-decoration: underline;
-} 
+.profile__options-more > li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .profile__options-more {
   list-style: none;
@@ -105,17 +106,17 @@
 }
 
 .profile__options button {
-    background: none;
-    width: 100%;
-    border: none;
-    color: white;
-    font-weight: 200 !important;
-    margin-bottom: 20px;
+  background: none;
+  width: 100%;
+  border: none;
+  color: white;
+  font-weight: 200 !important;
+  margin-bottom: 20px;
 }
 
 .profile__options button:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .logout {
-    padding: 0 10px;
+  padding: 0 10px;
 }

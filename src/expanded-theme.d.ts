@@ -13,7 +13,7 @@ declare module '@mui/material/styles' {
         play: PaletteOptions['primary'];
         moreInfo: PaletteOptions['primary'];
     }
-  }
+}
 
 declare module "@mui/material" {
     interface ButtonPropsColorOverrides {

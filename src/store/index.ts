@@ -1,18 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
 import moviesReducer from './movieSlice';
 import userReducer from './userSlice';
+import uiReducer from './uiSlice';
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./sideeffects/rootSaga";
+
+const sagaMiddleware = createSagaMiddleware();
+
 
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,
     users: userReducer,
+    ui: uiReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>

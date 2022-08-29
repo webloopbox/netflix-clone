@@ -1,0 +1,79 @@
+.movies-wrapper {
+  position: relative;
+  margin-top: 200px;
+  z-index: 50;
+  padding-bottom: 200px;
+}
+.top-movies-actual {
+  &__title {
+    margin-top: 0;
+    margin-left: 20px;
+    font-size: 24px;
+  }
+}
+
+.top-movie {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  // border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  &__details {
+    position: relative;
+    left: 18px;
+    width: 60px;
+    height: 30%;
+    background-color: gray;
+    border-radius: 5px;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.top-10-rank {
+  position: absolute;
+  left: -40px;
+  height: 30%;
+  &.first {
+    left: -30px;
+  }
+  &.last {
+    height: 20%;
+    top: 12px;
+    left: -30px;
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  opacity: 0 !important;
+  top: 15% !important;
+  color: #fff !important;
+  fill: white !important;
+  stroke: white !important;
+  transition: 0.2s !important;
+}
+
+.swiper.swiper-initialized:hover > .swiper-button-prev,
+.swiper.swiper-initialized:hover > .swiper-button-next {
+  opacity: 1 !important;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  text-align: right;
+
+  & img {
+      width: 70px;
+  }
+  & p {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+}

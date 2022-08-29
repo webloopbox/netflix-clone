@@ -8,7 +8,7 @@ import { Register } from './components/Register';
 
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';

@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
 
 export const Register = () => {
 
-    const useAppDispatch: () => AppDispatch = useDispatch 
+    const useAppDispatch: () => AppDispatch = useDispatch
     const dispatch = useAppDispatch()
     const isFirstRender = useFirstRender() // check if is first render of Register component
     const navigate = useNavigate()

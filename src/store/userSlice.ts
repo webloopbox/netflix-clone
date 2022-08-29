@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { RegisterCredentials, LoginCredentials, UserInitState, UserData } from '../models/User';
 
@@ -24,21 +24,21 @@ export const logout = createAsyncThunk('user/logout', async (payload, { rejectWi
     await signOut(auth)
 })
 
-const initialState: UserInitState = { 
-    currentUserUid: '', 
+const initialState: UserInitState = {
+    currentUserUid: '',
     userData: {
         email: ''
-    } 
+    }
 }
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setCurrentUserUid: (state, { payload } : PayloadAction<string>) => {
+        setCurrentUserUid: (state, { payload }: PayloadAction<string>) => {
             state.currentUserUid = payload
         },
-        setUserData: (state, { payload } : PayloadAction<string>) => {
+        setUserData: (state, { payload }: PayloadAction<string>) => {
             state.userData.email = payload
         },
     },
@@ -46,7 +46,7 @@ export const userSlice = createSlice({
         builder.addCase(logout.fulfilled, (state) => {
             state.currentUserUid = ''
         })
-      }
+    }
 });
 
 export const { setCurrentUserUid, setUserData } = userSlice.actions
