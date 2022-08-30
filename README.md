@@ -28,14 +28,12 @@ const firebaseConfig = {
 
 #### Then place your own TMDB API key inside `api/genres/index.ts` and `api/movies/index.ts`.
 
-
-
 #### To start the application use:
 ```bash
 npm install
 npm start
 ```
-
+---
 ## Built with
 * React
 * Typescript
@@ -43,3 +41,9 @@ npm start
 * Redux-Saga
 * Firebase
 * Formik
+
+---
+
+## License
+
+- Full credit for API data to TMDB API.
