@@ -1,59 +1,66 @@
 import { useFormik } from "formik";
 import { useEffect } from "react";
-import Button from "@mui/material/Button";
 import * as Yup from "yup";
+import { cleanErrorMessage, register } from "../../store/userSlice";
+import background from "../../assets/bg.jpg";
+import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { cleanErrorMessage, login } from "../store/userSlice";
-import background from "../assets/bg.jpg";
-import { LoginCredentials } from "../models/User";
-import { AppDispatch, RootState } from "../store";
+import { RegisterCredentials } from "../../models/User";
+import { AppDispatch, RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
-import { StyledLabel } from "./Register/styles";
+import { StyledLabel } from "./styles";
 
-const initialValues: LoginCredentials = {
+const initialValues: RegisterCredentials = {
   email: "",
+  username: "",
   password: "",
+  comfirmPassword: "",
 };
 
 const validationSchema = Yup.object({
   email: Yup.string()
     .email("Nie poprawny format.")
     .required("To pole jest wymagane."),
+  username: Yup.string().required("To pole jest wymagane."),
   password: Yup.string()
     .required("To pole jest wymagane.")
     .matches(/^.{6,}$/, "Minimum 6 znaków"),
+  comfirmPassword: Yup.string()
+    .required("To pole jest wymagane.")
+    .oneOf([Yup.ref("password"), null], "Podano inną wartość")
+    .matches(/^.{6,}$/, "Minimum 6 znaków"),
 });
 
-export const Login = () => {
-  const errorMessage = useSelector(
-    (state: RootState) => state.users.errorMessage
-  );
+export const Register = () => {
   const useAppDispatch: () => AppDispatch = useDispatch;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const errorMessage = useSelector(
+    (state: RootState) => state.users.errorMessage
+  );
+
+  const onSubmit = (values: RegisterCredentials) => {
+    dispatch(
+      register({
+        email: formik.values.email,
+        username: formik.values.username,
+        password: formik.values.password,
+        comfirmPassword: formik.values.comfirmPassword,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        navigate("/browse");
+        dispatch(cleanErrorMessage());
+      });
+  };
 
   useEffect(() => {
     return () => {
       dispatch(cleanErrorMessage());
     };
   }, []);
-
-  const onSubmit = (values: LoginCredentials) => {
-    dispatch(
-      login({
-        email: formik.values.email,
-        password: formik.values.password,
-      })
-    )
-      .unwrap()
-      .then((e: any) => {
-        navigate("/browse");
-        dispatch(cleanErrorMessage());
-      })
-      .catch((e: any) => {
-        console.log(e);
-      });
-  };
 
   const formik = useFormik({
     initialValues,
@@ -73,7 +80,7 @@ export const Login = () => {
             className="signup-container__form"
             onSubmit={formik.handleSubmit}
           >
-            <h2>Login</h2>
+            <h2>Register</h2>
             <div className="signup-container__control">
               <input
                 type="text"
@@ -89,6 +96,19 @@ export const Login = () => {
             </div>
             <div className="signup-container__control">
               <input
+                type="text"
+                id="username"
+                {...formik.getFieldProps("username")}
+              />
+              <StyledLabel active={!!formik.values.username} htmlFor="username">
+                Username
+              </StyledLabel>
+              {formik.touched.username && formik.errors.username ? (
+                <div className="error">{formik.errors.username}</div>
+              ) : null}
+            </div>
+            <div className="signup-container__control">
+              <input
                 type="password"
                 id="password"
                 {...formik.getFieldProps("password")}
@@ -100,14 +120,29 @@ export const Login = () => {
                 <div className="error">{formik.errors.password}</div>
               ) : null}
             </div>
-
+            <div className="signup-container__control">
+              <input
+                type="password"
+                id="comfirmPassword"
+                {...formik.getFieldProps("comfirmPassword")}
+              />
+              <StyledLabel
+                active={!!formik.values.comfirmPassword}
+                htmlFor="comfirmPassword"
+              >
+                Confirm password
+              </StyledLabel>
+              {formik.touched.comfirmPassword &&
+              formik.errors.comfirmPassword ? (
+                <div className="error">{formik.errors.comfirmPassword}</div>
+              ) : null}
+            </div>
             <Button type="submit" variant="contained" color="primary">
-              Login
+              Register
             </Button>
             {!!errorMessage && <div className="error">{errorMessage}</div>}
           </form>
-          <p>Do not have a Netflix account yet?</p>
-          <Link to="/register">Register now.</Link>
+          <Link to="/login">Back</Link>
         </div>
       </div>
     </>

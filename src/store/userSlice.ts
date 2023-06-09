@@ -1,53 +1,101 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../firebase';
-import { RegisterCredentials, LoginCredentials, UserInitState, UserData } from '../models/User';
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../firebase";
+import {
+  RegisterCredentials,
+  LoginCredentials,
+  UserInitState,
+} from "../models/User";
+import { FirebaseError } from "firebase/app";
 
-export const register = createAsyncThunk<any, RegisterCredentials>('user/register', async ({ email, password }, { rejectWithValue }) => {
+export const register = createAsyncThunk<void, RegisterCredentials>(
+  "user/register",
+  async ({ email, username, password }, { rejectWithValue }) => {
     try {
-        await createUserWithEmailAndPassword(auth, email, password)  // and also log you in
-    } catch (e: any) {
-        console.log(e.message);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(user, { displayName: username });
+    } catch (err) {
+      if ((err as FirebaseError).code === "auth/email-already-in-use") {
+        return rejectWithValue(
+          "Email is already in use. Please use a different email."
+        );
+      } else {
+        return rejectWithValue(
+          "An error occurred during registration. Please try again later."
+        );
+      }
     }
-})
+  }
+);
 
-export const login = createAsyncThunk<any, LoginCredentials>('user/login', async ({ email, password }, { rejectWithValue }) => {
+export const login = createAsyncThunk<void, LoginCredentials>(
+  "user/login",
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-        await signInWithEmailAndPassword(auth, email, password)  // and also log you in
-    } catch (e: any) {
-        return rejectWithValue('No user found');
+      await signInWithEmailAndPassword(auth, email, password);
+      return;
+    } catch (err) {
+      if ((err as FirebaseError).code === "auth/wrong-password") {
+        return rejectWithValue("Wrong password.");
+      } else if ((err as FirebaseError).code === "auth/user-not-found") {
+        return rejectWithValue("User not found.");
+      } else {
+        return rejectWithValue(
+          "An error occurred during login. Please try again later."
+        );
+      }
     }
+  }
+);
 
-})
-
-export const logout = createAsyncThunk('user/logout', async (payload, { rejectWithValue }) => {
-    await signOut(auth)
-})
+export const logout = createAsyncThunk(
+  "user/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      return rejectWithValue("Logout unsuccessful");
+    }
+  }
+);
 
 const initialState: UserInitState = {
-    currentUserUid: '',
-    userData: {
-        email: ''
-    }
-}
+  currentUserUid: undefined,
+  errorMessage: undefined,
+};
 
 export const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
-        setCurrentUserUid: (state, { payload }: PayloadAction<string>) => {
-            state.currentUserUid = payload
-        },
-        setUserData: (state, { payload }: PayloadAction<string>) => {
-            state.userData.email = payload
-        },
+  name: "user",
+  initialState,
+  reducers: {
+    setCurrentUserUid: (state, { payload }: PayloadAction<string>) => {
+      state.currentUserUid = payload;
     },
-    extraReducers: (builder) => {
-        builder.addCase(logout.fulfilled, (state) => {
-            state.currentUserUid = ''
-        })
-    }
+    cleanErrorMessage: (state) => {
+      state.errorMessage = undefined;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(logout.fulfilled, (state) => {
+      state.currentUserUid = undefined;
+    });
+    builder.addCase(register.rejected, (state, { payload }) => {
+      state.errorMessage = payload as string;
+    });
+    builder.addCase(login.rejected, (state, { payload }) => {
+      state.errorMessage = payload as string;
+    });
+  },
 });
 
-export const { setCurrentUserUid, setUserData } = userSlice.actions
+export const { setCurrentUserUid, cleanErrorMessage } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,21 +1,16 @@
-export type RegisterCredentials = {
-    email: string,
-    password: string,
-    comfirmPassword: string
-}
-export type LoginCredentials = {
-    email: string,
-    password: string,
+export interface RegisterCredentials {
+  email: string;
+  username: string;
+  password: string;
+  comfirmPassword: string;
 }
 
-export type CurrentUserUid = string
-
-export type UserData = {
-    email: string
+export interface LoginCredentials {
+  email: string;
+  password: string;
 }
 
-export type UserInitState = {
-    currentUserUid: CurrentUserUid,
-    userData: UserData
+export interface UserInitState {
+  currentUserUid: string | undefined;
+  errorMessage: string | undefined;
 }
-

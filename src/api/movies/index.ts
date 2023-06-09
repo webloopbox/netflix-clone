@@ -1,10 +1,12 @@
+import { TopMovieDataResponse } from "../../models/Movies";
 
-export async function getTopMovies() {
+export const getTopMovies = async (): Promise<TopMovieDataResponse> => {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
-    const data = await response.json()
-    return data
+    const response = await fetch(
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}`
+    );
+    return await response.json();
   } catch (error) {
-    return error;
+    throw new Error("Failed to fetch top movies");
   }
-}
+};

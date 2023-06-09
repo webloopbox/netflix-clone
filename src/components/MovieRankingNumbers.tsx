@@ -9,4 +9,15 @@ import { ReactComponent as Number8 } from "../assets/number8.svg";
 import { ReactComponent as Number9 } from "../assets/number9.svg";
 import { ReactComponent as Number10 } from "../assets/number10.svg";
 
-export const numbers = [Number1, Number2, Number3, Number4, Number5, Number6, Number7, Number8, Number9, Number10]
+export const numbers = [
+  Number1,
+  Number2,
+  Number3,
+  Number4,
+  Number5,
+  Number6,
+  Number7,
+  Number8,
+  Number9,
+  Number10,
+];
