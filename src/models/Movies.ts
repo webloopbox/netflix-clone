@@ -1,4 +1,4 @@
-interface TopMoviesDetails {
+interface TopMoviesDetailsResponse {
   adult: boolean;
   backdrop_path: string;
   genre_ids: Array<number>;
@@ -16,13 +16,12 @@ interface TopMoviesDetails {
   vote_count: number;
 }
 
-interface TopMovieDetailsType {
+export interface TopMovieAttached {
   id: number;
   title: string;
   overview: string;
   poster: string;
-  genres: CategoriesDataType;
-  RankingNumber: JSX.Element;
+  genres: number[];
 }
 
 export interface TmdbMovie {
@@ -43,15 +42,13 @@ export interface TmdbMovie {
   vote_count: number;
 }
 
-export type CategoriesDataType = Array<{ id: number; name: "string" }>;
-
 export interface TopMovieDataResponse {
   page: number;
-  results: Array<TopMoviesDetails>;
+  results: Array<TopMoviesDetailsResponse>;
   total_pages: number;
   total_results: number;
 }
 
 export interface MoviesInitState {
-  topMovies: Array<TopMovieDetailsType>;
+  topMovies: Array<TopMovieAttached>;
 }

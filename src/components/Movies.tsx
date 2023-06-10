@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../store/movieSlice";
 import { RootState } from "../store";
+import { RankingNumber } from "./Home/RankingNumber";
+import { TopMovieAttached } from "../models/Movies";
 
 export const Movies = () => {
   const dispatch = useDispatch();
@@ -53,20 +55,16 @@ export const Movies = () => {
             allowTouchMove={false}
             scrollbar={false}
           >
-            {topMovies.length &&
-              topMovies.map((movie: any, index) => {
-                const { RankingNumber } = movie;
-                return (
-                  <SwiperSlide key={movie.id}>
-                    <div className="top-movie">
-                      <RankingNumber />
-                      <div className="top-movie__details">
-                        <img src={movie.poster} alt="" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
+            {topMovies.map((movie: TopMovieAttached, index) => (
+              <SwiperSlide key={movie.id}>
+                <div className="top-movie">
+                  <RankingNumber number={index + 1} />
+                  <div className="top-movie__details">
+                    <img src={movie.poster} alt="" />
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </section>

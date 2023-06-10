@@ -5,13 +5,11 @@ import { movieActions } from "../../movieSlice";
 
 function* fetchTopMovies(): any {
   try {
-    const categoriesData = yield call(getGenres);
+    const genresData = yield call(getGenres);
     const topMovieData = yield call(getTopMovies);
-    yield put(
-      movieActions.fetchTopMoviesSuccess({ categoriesData, topMovieData })
-    );
-  } catch (error: any) {
-    yield put(movieActions.fetchFailure(error));
+    yield put(movieActions.fetchTopMoviesSuccess({ genresData, topMovieData }));
+  } catch (error) {
+    yield put(movieActions.fetchFailure((error as Error).message));
   }
 }
 

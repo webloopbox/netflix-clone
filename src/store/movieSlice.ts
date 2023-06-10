@@ -1,11 +1,10 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import { numbers } from "../components/MovieRankingNumbers";
 import {
-  CategoriesDataType,
   MoviesInitState,
   TmdbMovie,
   TopMovieDataResponse,
 } from "../models/Movies";
+import { Genre } from "../models/Genres";
 
 const initialState: MoviesInitState = {
   topMovies: [],
@@ -22,18 +21,15 @@ export const movieSlice = createSlice({
 
       const only10Movies = sortedMovies.slice(0, 10);
 
-      const mappedMovies = only10Movies.map(
-        (movie: TmdbMovie, index: number) => {
-          return {
-            id: movie.id,
-            title: movie.title,
-            overview: movie.overview,
-            poster: "https://image.tmdb.org/t/p/w500/" + movie.poster_path,
-            genres: movie.genre_ids,
-            RankingNumber: numbers[index],
-          };
-        }
-      );
+      const mappedMovies = only10Movies.map((movie: TmdbMovie) => {
+        return {
+          id: movie.id,
+          title: movie.title,
+          overview: movie.overview,
+          poster: "https://image.tmdb.org/t/p/w500/" + movie.poster_path,
+          genres: movie.genre_ids,
+        };
+      });
 
       state.topMovies = mappedMovies;
     },
@@ -46,10 +42,10 @@ export const movieSlice = createSlice({
 export const movieActions = {
   fetch: createAction("movie/fetch"),
   fetchTopMoviesSuccess: createAction<{
-    categoriesData: CategoriesDataType;
+    genresData: Genre[];
     topMovieData: TopMovieDataResponse;
   }>("movie/fetchTopMoviesSuccess"),
-  fetchFailure: createAction<any>("movie/fetchFailure"),
+  fetchFailure: createAction<string>("movie/fetchFailure"),
 };
 
 export default movieSlice.reducer;

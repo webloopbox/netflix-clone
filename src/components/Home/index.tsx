@@ -1,9 +1,9 @@
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { setCurrentUserUid } from "../store/userSlice";
-import { Movies } from "./Movies";
-import { Header } from "./Header";
+import { setCurrentUserUid } from "../../store/userSlice";
+import { Movies } from "../Movies";
+import { Header } from "../Header";
 
 export const Home = () => {
   const dispatch = useDispatch();

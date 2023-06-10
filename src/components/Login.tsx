@@ -46,11 +46,11 @@ export const Login = () => {
       })
     )
       .unwrap()
-      .then((e: any) => {
+      .then((e) => {
         navigate("/browse");
         dispatch(cleanErrorMessage());
       })
-      .catch((e: any) => {
+      .catch((e) => {
         console.log(e);
       });
   };
