@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import moviesReducer from "./movieSlice";
 import userReducer from "./userSlice";
+import modalReducer from "./modalSlice";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sideeffects/rootSaga";
 
@@ -10,6 +11,7 @@ export const store = configureStore({
   reducer: {
     movies: moviesReducer,
     users: userReducer,
+    modals: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

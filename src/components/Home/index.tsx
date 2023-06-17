@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentUserUid } from "../../store/userSlice";
 import { Movies } from "../Movies";
 import { Header } from "../Header";
+import { Modals } from "components/Modals";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const Home = () => {
 
   return (
     <>
+      <Modals />
       <Header />
       <Movies />
     </>

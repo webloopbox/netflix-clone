@@ -13,6 +13,7 @@ import { movieActions } from "../store/movieSlice";
 import { RootState } from "../store";
 import { RankingNumber } from "./Home/RankingNumber";
 import { TopMovieAttached } from "../models/Movies";
+import { setMovieDetailsModalStatus } from "store/modalSlice";
 
 export const Movies = () => {
   const dispatch = useDispatch();
@@ -55,16 +56,31 @@ export const Movies = () => {
             allowTouchMove={false}
             scrollbar={false}
           >
-            {topMovies.map((movie: TopMovieAttached, index) => (
-              <SwiperSlide key={movie.id}>
-                <div className="top-movie">
-                  <RankingNumber number={index + 1} />
-                  <div className="top-movie__details">
-                    <img src={movie.poster} alt="" />
+            {topMovies.map((movie: TopMovieAttached, index) => {
+              return (
+                <SwiperSlide key={movie.id}>
+                  <div className="top-movie">
+                    <RankingNumber number={index + 1} />
+                    <div
+                      onClick={() =>
+                        dispatch(
+                          setMovieDetailsModalStatus({
+                            visible: true,
+                            title: movie.title,
+                            overview: movie.overview,
+                            poster: movie.poster,
+                            backdrop: movie.backdrop,
+                          })
+                        )
+                      }
+                      className="top-movie__details"
+                    >
+                      <img src={movie.poster} alt="" />
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </section>

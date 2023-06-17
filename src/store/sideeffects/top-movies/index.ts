@@ -7,6 +7,7 @@ function* fetchTopMovies(): any {
   try {
     const genresData = yield call(getGenres);
     const topMovieData = yield call(getTopMovies);
+
     yield put(movieActions.fetchTopMoviesSuccess({ genresData, topMovieData }));
   } catch (error) {
     yield put(movieActions.fetchFailure((error as Error).message));

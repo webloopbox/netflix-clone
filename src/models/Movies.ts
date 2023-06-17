@@ -21,6 +21,7 @@ export interface TopMovieAttached {
   title: string;
   overview: string;
   poster: string;
+  backdrop: string;
   genres: number[];
 }
 

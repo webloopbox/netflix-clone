@@ -5,6 +5,7 @@ import {
   TopMovieDataResponse,
 } from "../models/Movies";
 import { Genre } from "../models/Genres";
+import { mapToMoviesAttached } from "helpers/mapToMoviesAttached.helper";
 
 const initialState: MoviesInitState = {
   topMovies: [],
@@ -21,20 +22,12 @@ export const movieSlice = createSlice({
 
       const only10Movies = sortedMovies.slice(0, 10);
 
-      const mappedMovies = only10Movies.map((movie: TmdbMovie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          overview: movie.overview,
-          poster: "https://image.tmdb.org/t/p/w500/" + movie.poster_path,
-          genres: movie.genre_ids,
-        };
-      });
+      const mappedMovies = mapToMoviesAttached(only10Movies);
 
       state.topMovies = mappedMovies;
     },
     fetchFailure: (state, { payload }) => {
-      console.log(payload);
+      console.error(payload);
     },
   },
 });

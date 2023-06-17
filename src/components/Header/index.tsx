@@ -6,7 +6,7 @@ import InfoIcon from "@mui/icons-material/InfoOutlined";
 import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import VolumeMuteIcon from "@mui/icons-material/VolumeMuteOutlined";
 import { useState } from "react";
-import { StyledButton, StyledFormControl, StyledSelect } from "./styles";
+import { StyledFormControl, StyledMuteButton, StyledSelect } from "./styles";
 
 export const Header = () => {
   const [muteStatus, setMuteStatus] = useState<boolean>(true);
@@ -66,12 +66,12 @@ export const Header = () => {
           </div>
         </div>
         <div className="embedded-components">
-          <StyledButton
+          <StyledMuteButton
             variant="contained"
             onClick={() => setMuteStatus((prev) => !prev)}
           >
             {muteStatus ? <VolumeMuteIcon /> : <VolumeUpIcon />}
-          </StyledButton>
+          </StyledMuteButton>
           <div className="maturity-rating">16+</div>
         </div>
       </div>

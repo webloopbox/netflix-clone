@@ -28,6 +28,9 @@ const theme = createTheme({
       main: "#6c6c6e",
       contrastText: "white",
     },
+    modal: {
+      background: "#181818",
+    },
     tonalOffset: 0.2,
   },
   breakpoints: {

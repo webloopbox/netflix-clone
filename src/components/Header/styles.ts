@@ -1,6 +1,6 @@
 import { Button, FormControl, Select, styled } from "@mui/material";
 
-export const StyledButton = styled(Button)({
+export const StyledMuteButton = styled(Button)({
   borderRadius: "50%",
   width: "50px",
   height: "50px",
